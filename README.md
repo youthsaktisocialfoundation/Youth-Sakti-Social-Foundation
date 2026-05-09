@@ -233,7 +233,7 @@ The platform follows a:
 ```txt
 ┌──────────────────────────────────────────────┐
 │                  USERS                       │
-│ Volunteers • Donors • NGOs • Admins         │
+│ Volunteers • Donors • NGOs • Admins          │
 └──────────────────────────────────────────────┘
                         │
                         ▼
