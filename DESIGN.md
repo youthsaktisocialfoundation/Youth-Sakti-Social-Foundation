@@ -1,60 +1,390 @@
-# Youth-Sakti-Social-Foundation
+# 🌿 YSSF Website Design System
 
-Welcome to the frontend repository for the Youth-Sakti-Social-Foundation. This platform is designed to be a modern, accessible, and high-converting digital ecosystem for social impact.
+> Design Language & Visual Identity Guide for **YSSF (Youth Social Support Foundation)**
 
-## 🚀 Core Technology Stack
+---
 
-* **Framework:** Next.js (App Router, TypeScript)
-* **Styling:** Tailwind CSS
-* **UI Components:** React.js / shadcn/ui
-* **Animations:** Framer Motion
-* **3D Graphics:** Three.js
+# 📖 Brand Vision
 
-## 🎨 Color Theory: Accessible Green Palette
+YSSF represents:
 
-Green triggers psychological associations with growth, safety, and balance, making it highly effective for building donor trust. To ensure our platform is inclusive, this palette strictly adheres to the WCAG 2.1 mandated 4.5:1 minimum contrast ratio for text readability.
+* Nature 🌱
+* Humanity ❤️
+* Community 🤝
+* Awareness 📢
+* Youth Energy ⚡
 
-* **Primary Dark Green (`#004D00`):** Signals tradition and financial stability.
-* **Secondary Mint Green (`#3EB489`):** Reads as modern and clean without feeling clinical.
-* **Soft Green Background (`#E5F5E0`):** Breaks up white space in background sections without overwhelming the eye.
-* **Contrasting Accent (`#DC582A`):** A reddish-orange that creates high visual contrast to ensure primary donation buttons immediately capture attention.
-* **Off-White Surface (`#FDFDFC`):** A warm alternative to stark white for the main website background.
-* **Darkest Green/Text (`#013220`):** Used for main body text to maintain the earthy theme while ensuring strict legibility and contrast.
-* **Muted Gray/Green (`#94A596`):** Ideal for secondary text, subtle borders, or footer backgrounds.
-* **Pure White (`#FFFFFF`):** Used for card surfaces and text placed inside dark green buttons to maximize legibility.
+The overall website should feel:
 
-## 🖋 Typography: 3-Font System
+* Warm & emotional
+* Youth-driven
+* Environment-focused
+* Slightly hand-crafted / school-project inspired
+* Clean but alive
+* NGO + Community + Nature aesthetic
 
-* **Headings (Playfair Display):** A refined, high-contrast serif font that creates a strong sense of structure and establishment.
-* **Body Text (Inter):** A highly readable, system-optimized sans-serif font that guarantees legibility across all mobile devices.
-* **Accents & UI Elements (Montserrat):** A structured, geometric sans-serif font used in uppercase for navigation links and buttons.
+---
 
-## 🤖 Vercel v0 Generation Prompt
+# 🎨 Color Palette
 
-*If using Vercel v0, Cursor, or another AI coding assistant to bootstrap components, copy and paste the following prompt to ensure strict adherence to our UX and design guidelines:*
+## Primary Colors
 
->
-> **TECH STACK:** Next.js (App Router), Tailwind CSS, shadcn/ui, Framer Motion, Lucide React icons. Leave a designated structured `<canvas>` placeholder in the hero section for a future Three.js integration.
->
-> **TYPOGRAPHY:** Headings: Playfair Display. Body Text: Inter. Buttons/Nav Links: Montserrat (Uppercase, tracking-wider).
->
-> **COLOR PALETTE:** Primary: #004D00 | Secondary: #3EB489 | Accent/CTA: #DC582A | Background: #FDFDFC | Surface/Cards: #FFFFFF | Text Dark: #013220 | Text Muted: #94A596 | Light Green Section BG: #E5F5E0
->
-> **UX & ACCESSIBILITY RULES (STRICT):**
-> 1. NO CAROUSELS OR SLIDERS. Use static, high-impact imagery or split-screen layouts instead to prevent banner blindness.
-> 2. Ensure a minimum 4.5:1 color contrast ratio for all text. Use semantic HTML and include aria-labels for all interactive elements.
-> 3. Use a "layer-cake" scanning pattern—large bold headings, short paragraphs (max 3-4 lines), and plenty of whitespace.
-> 4. Mobile-First: The layout must be perfectly responsive.
->
-> **PAGE ARCHITECTURE:**
-> 1. HEADER (Sticky): Logo on left. Links center. Prominent "Donate Now" button (#DC582A) on right.
-> 2. HERO SECTION: Split-screen. Left: Bold typography "Empowering Youth, Transforming Communities." Two buttons: Primary (#004D00) and Secondary Outline. Right: Placeholder container for Three.js globe.
-> 3. IMPACT BAR: Full-width (#E5F5E0 bg) with 3 animated counting-up statistics.
-> 4. DONATION TIERS: "Choose Your Impact Today". 3 interactive cards side-by-side ($25, $50, $100). Highlight the $50 card as "Most Popular" with a border glow. Below cards: Wide "Proceed to Donate" button.
-> 5. UPCOMING EVENTS: Clean grid showing 2 upcoming volunteer events with date badges.
-> 6. FOOTER: Dark green background (#004D00) with white text. Include navigation, contact info, and minimal newsletter signup.
->
-> **ANIMATION:**
-> - Hero text/buttons stagger fade-in-up.
-> - Use `whileInView` to smoothly fade/translate the Impact Bar and Donation Cards upwards on scroll.
-> - Button scale-up on hover. "Most Popular" card gets a subtle, continuous floating/glowing animation.
+| Color             | Usage                           | Hex       |
+| ----------------- | ------------------------------- | --------- |
+| Deep Forest Green | Main branding, navbar, headings | `#0B5D3B` |
+| Light Leaf Green  | Cards, sections, highlights     | `#8FD694` |
+| Deep Yellow       | CTA buttons, accent glow        | `#F4B400` |
+| Mint Green        | Background tint, soft sections  | `#DFF7E2` |
+| White             | Main text background            | `#FFFFFF` |
+
+---
+
+## Support / Emotion Colors
+
+| Color       | Usage                              | Hex       |
+| ----------- | ---------------------------------- | --------- |
+| Warm Red    | Emergency / donation / alerts      | `#D64545` |
+| Soft Orange | Awareness campaigns, hover accents | `#F57C00` |
+
+---
+
+# 🖋 Typography System
+
+The website should feel like:
+
+> “A modern NGO website mixed with a youthful handmade school-poster feeling.”
+
+---
+
+## Font Combination (4-Font Combo)
+
+### 1. Gochi Hand
+
+* Use For:
+
+  * Hero heading highlights
+  * Emotional text
+  * Quotes
+  * Handwritten effect sections
+
+Style Feel:
+
+> Friendly, human, handwritten, community-driven
+
+---
+
+### 2. Patrick Hand
+
+* Use For:
+
+  * Subheadings
+  * Small banners
+  * Campaign cards
+  * Awareness sections
+
+Style Feel:
+
+> School notebook + NGO poster vibe
+
+---
+
+### 3. Poppins
+
+* Use For:
+
+  * Main body text
+  * Buttons
+  * Navbar
+  * General UI readability
+
+Style Feel:
+
+> Modern, clean, startup-style readability
+
+---
+
+### 4. Nunito
+
+* Use For:
+
+  * Section descriptions
+  * Cards
+  * Testimonials
+  * Footer content
+
+Style Feel:
+
+> Soft rounded friendly typography
+
+---
+
+# 🌿 Overall Design Language
+
+## Core Feel
+
+The website should feel:
+
+* Organic
+* Human-centered
+* Community-driven
+* Positive
+* Trustworthy
+* Hopeful
+
+Avoid:
+
+* Corporate stiffness
+* Overly futuristic UI
+* Dark cyber themes
+* Heavy glassmorphism everywhere
+* Too much black
+
+---
+
+# 🧩 UI Style Guidelines
+
+## Buttons
+
+### Primary CTA
+
+* Background: Deep Yellow
+* Text: Deep Green
+* Border Radius: `16px`
+* Hover:
+
+  * Slight scale up
+  * Soft glow
+  * Orange shadow
+
+### Secondary CTA
+
+* Outline button
+* Green border
+* Mint hover background
+
+---
+
+# 📦 Card Design
+
+Cards should have:
+
+* Rounded corners (`20px`)
+* Soft shadow
+* Organic spacing
+* Slight hover lift
+* Nature-themed iconography
+
+Recommended card backgrounds:
+
+* White
+* Mint
+* Light green gradient
+
+---
+
+# 🌄 Hero Section Style
+
+## Hero Feel
+
+The hero section should:
+
+* Feel emotional
+* Include human/community imagery
+* Use green + yellow lighting
+* Maintain hope and positivity
+
+Possible visual elements:
+
+* Trees
+* Children
+* Volunteers
+* Nature gradients
+* Soft blobs
+* Brush strokes
+* Paper-cut style assets
+
+---
+
+# ✨ Animations
+
+Animations should be:
+
+* Soft
+* Friendly
+* Lightweight
+* Natural
+
+Recommended:
+
+* Fade up
+* Floating leaves
+* Slow parallax
+* Hover bounce
+* Counter animations
+* Scroll reveal
+
+Avoid:
+
+* Aggressive motion
+* Overly techy animations
+* Neon effects
+
+---
+
+# 📐 Spacing System
+
+| Type                 | Size        |
+| -------------------- | ----------- |
+| Section Padding      | `100px`     |
+| Card Padding         | `24px`      |
+| Button Padding       | `14px 28px` |
+| Border Radius Large  | `20px`      |
+| Border Radius Medium | `14px`      |
+
+---
+
+# 🌍 Section Ideas
+
+## Recommended Website Sections
+
+### 1. Hero Section
+
+* NGO introduction
+* CTA buttons
+* Community visual
+
+### 2. About YSSF
+
+* Story
+* Mission
+* Vision
+
+### 3. Our Impact
+
+* Trees planted
+* Campaigns organized
+* Volunteers
+* Children supported
+
+### 4. Campaigns
+
+* Blood donation
+* Women safety awareness
+* Environmental drives
+* Animal support
+
+### 5. Gallery
+
+* Real activity photos
+* Community moments
+* Event highlights
+
+### 6. Volunteer Section
+
+* Join movement
+* Community contribution
+
+### 7. Testimonials
+
+* Volunteer words
+* Community feedback
+
+### 8. Footer
+
+* Contact
+* Social links
+* NGO information
+
+---
+
+# 🌱 Texture & Background Ideas
+
+Recommended background styles:
+
+* Soft green gradients
+* Forest-inspired blur
+* Paper texture
+* Watercolor overlays
+* Organic blobs
+* Leaf patterns
+* Hand-drawn elements
+
+---
+
+# 🖼 Image Style Direction
+
+Images should feel:
+
+* Real
+* Emotional
+* Natural lighting
+* Community-focused
+* Hopeful
+
+Recommended subjects:
+
+* Volunteers planting trees
+* Children smiling
+* Blood donation camps
+* Awareness campaigns
+* Rural/community support
+* Hands together
+* Nature restoration
+
+---
+
+# 💡 UI Inspiration Keywords
+
+Use these keywords while designing:
+
+* Eco NGO
+* Green Humanity
+* Youth Community
+* School Poster Feel
+* Handcrafted Modern UI
+* Nature First
+* Social Impact Design
+* Friendly NGO Interface
+
+---
+
+# 📱 Responsive Design Notes
+
+## Mobile First Priority
+
+The website should:
+
+* Be lightweight
+* Load fast
+* Have large touch-friendly buttons
+* Use stacked cards on mobile
+* Keep text readable
+* Maintain emotional visuals
+
+---
+
+# 🧠 Final Design Philosophy
+
+> “YSSF should not feel like a corporate NGO website.
+> It should feel like a movement created by passionate young people trying to genuinely change society and nature together.”
+
+---
+
+# ✅ Design Checklist
+
+Before finalizing any page:
+
+* [ ] Does it feel human?
+* [ ] Is the green palette balanced?
+* [ ] Is readability good?
+* [ ] Does it emotionally connect?
+* [ ] Are animations soft?
+* [ ] Is the NGO identity visible?
+* [ ] Does it feel hopeful?
+* [ ] Is the layout clean on mobile?
+
+---
+
+# 🌿 YSSF Design Motto
+
+> “Small actions together can create a lasting impact.”
