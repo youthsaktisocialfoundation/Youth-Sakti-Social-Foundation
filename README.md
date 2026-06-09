@@ -1,5 +1,7 @@
 # Youth-Sakti-Social-Foundation
 
+> 🚀 **Interactive & Animated Architecture Visualizer**: View the fully animated, interactive workflows and system graphs directly on the live platform! Navigate to `/system-design` on the running application to experience the live request flow simulator, interactive tech stack deck, database ER visualizer, and build pipelines in action.
+
 ## NGO Website — Finalized Modern Tech Stack
 
 ### Project Architecture Overview
@@ -70,14 +72,16 @@
 
 ## Suggested Architecture Flow
 
-```txt
-User
-   ↓
-Next.js Frontend
-   ↓ (api.ts REST client)
-Express.js Backend APIs
-   ↓ (Prisma ORM Client)
-SQLite database (dev.db)
+```mermaid
+graph TD
+    User([User / Browser])
+    NextJS[Next.js Frontend]
+    Express[Express.js Backend APIs]
+    SQLite[(SQLite Database)]
+
+    User -->|Interacts| NextJS
+    NextJS -->|API Requests via api.ts| Express
+    Express -->|Queries via Prisma Client| SQLite
 ```
 
 ---
@@ -172,53 +176,65 @@ The platform follows a:
 
 # Complete System Architecture
 
-```txt
-┌──────────────────────────────────────────────┐
-│                  USERS                       │
-│ Volunteers • Donors • NGOs • Admins          │
-└──────────────────────────────────────────────┘
-                        │
-                        ▼
-┌──────────────────────────────────────────────┐
-│              NEXT.JS FRONTEND                │
-│                                              │
-│ - Landing Page                               │
-│ - Dashboard                                  │
-│ - Event System                               │
-│ - Donation Flow                              │
-│ - Calendar System                            │
-│ - Authentication UI                          │
-│ - Community Interaction                      │
-└──────────────────────────────────────────────┘
-                        │
-                        ▼
-┌──────────────────────────────────────────────┐
-│          HONO.JS / SERVER ACTIONS            │
-│                                              │
-│ - Secure APIs                                │
-│ - Payment Verification                       │
-│ - Admin Operations                           │
-│ - Webhooks                                   │
-│ - Event Management                           │
-└──────────────────────────────────────────────┘
-                        │
-                        ▼
-┌──────────────────────────────────────────────┐
-│               SUPABASE ECOSYSTEM             │
-│                                              │
-│ - Authentication                             │
-│ - PostgreSQL Database                        │
-│ - Realtime Features                          │
-│ - Row Level Security                         │
-└──────────────────────────────────────────────┘
-                        │
-        ┌───────────────┼────────────────┐
-        ▼               ▼                ▼
+```mermaid
+graph TD
+    classDef main fill:#e8f5e9,stroke:#0B5D3B,stroke-width:2px,color:#0B5D3B;
+    classDef frontend fill:#e3f2fd,stroke:#0d47a1,stroke-width:2px,color:#0d47a1;
+    classDef backend fill:#fffde7,stroke:#f57f17,stroke-width:2px,color:#f57f17;
+    classDef db fill:#fbe9e7,stroke:#b71c1c,stroke-width:2px,color:#b71c1c;
+    classDef external fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#4a148c;
 
-┌─────────────┐ ┌─────────────┐ ┌─────────────┐
-│ Cloudinary  │ │ Sanity CMS   │ │ Razorpay    │
-│ Media CDN   │ │ Content Mgmt │ │ Payments    │
-└─────────────┘ └─────────────┘ └─────────────┘
+    subgraph USERS [Users Layer]
+        Volunteers[Volunteers]
+        Donors[Donors]
+        NGOs[NGO Partners]
+        Admins[Administrators]
+    end
+    class USERS,Volunteers,Donors,NGOs,Admins main;
+
+    subgraph FE [Next.js Frontend]
+        Landing[Landing Page]
+        Dash[User Dashboards]
+        Events[Event & Calendar System]
+        Donation[Donation Flow]
+        AuthUI[Authentication UI]
+    end
+    class FE,Landing,Dash,Events,Donation,AuthUI frontend;
+
+    subgraph BE [Express.js Backend]
+        API[Secure REST APIs]
+        PayVer[Payment Verification]
+        AdmOps[Admin Operations]
+        EvtMgmt[Event & Calendar Manager]
+    end
+    class BE,API,PayVer,AdmOps,EvtMgmt backend;
+
+    subgraph DATA [Data & Auth Layer]
+        Prisma[Prisma ORM]
+        DB[(better-sqlite3 Database)]
+        JWT[Custom JWT / jose Auth]
+    end
+    class DATA,Prisma,DB,JWT db;
+
+    subgraph EXT [External Ecosystem]
+        Cloudinary[Cloudinary Media CDN]
+        Sanity[Sanity CMS]
+        Razorpay[Razorpay Payment Gateway]
+    end
+    class EXT,Cloudinary,Sanity,Razorpay external;
+
+    %% Connections
+    Volunteers & Donors & NGOs & Admins ==> FE
+    FE -->|HTTP API client api.ts| BE
+    BE -->|Query Adapters| Prisma
+    Prisma --> DB
+    BE -->|JWT Session Guards| JWT
+    
+    %% External relations
+    FE -.->|Direct Media Upload| Cloudinary
+    FE -.->|Fetch Static Content| Sanity
+    FE -.->|Client-side checkout| Razorpay
+    Razorpay -.->|Server Webhooks| BE
 ```
 
 ---
@@ -249,18 +265,14 @@ The platform follows a:
 
 ## Authentication Pipeline
 
-```txt
-User Opens Platform
-        ↓
-Authentication Selection
-        ├── Google OAuth
-        └── Email OTP
-                ↓
-Account Verification
-                ↓
-Role Assignment
-                ↓
-Dashboard Access
+```mermaid
+graph TD
+    Start([User Opens Platform]) --> Select[Authentication Selection]
+    Select -->|Google OAuth| OAuth[OAuth Verification]
+    Select -->|Email OTP| OTP[OTP Delivery & Match]
+    OAuth & OTP --> Verify[Account Verification]
+    Verify --> Assign[Role Assignment<br>Admin / Volunteer / Donor / NGO]
+    Assign --> Access[Dashboard Access Granted]
 ```
 
 ---
@@ -312,20 +324,14 @@ The landing page is designed to:
 
 # Volunteer Participation Flow
 
-```txt
-Dashboard
-    ↓
-Browse Events
-    ↓
-Open Event Details
-    ↓
-Check Schedule
-    ↓
-Mark Availability
-    ↓
-Join Event
-    ↓
-Receive Confirmation
+```mermaid
+graph TD
+    Dash([Dashboard]) --> Browse[Browse Events]
+    Browse --> Details[Open Event Details]
+    Details --> Schedule[Check Schedule]
+    Schedule --> Availability[Mark Availability]
+    Availability --> Join[Join Event]
+    Join --> Confirm[Receive Confirmation & System Notification]
 ```
 
 ---
@@ -334,38 +340,27 @@ Receive Confirmation
 
 ## Event Donation Pipeline
 
-```txt
-Select Campaign/Event
-        ↓
-Choose Donation Amount
-        ↓
-Authentication Check
-        ↓
-Razorpay Payment Gateway
-        ↓
-Payment Verification
-        ↓
-Donation Success
-        ↓
-Receipt Generation
-        ↓
-Admin Notification
+```mermaid
+graph TD
+    Select[Select Campaign or Event] --> Amount[Choose Donation Amount]
+    Amount --> Auth[Authentication Check]
+    Auth --> Gateway[Razorpay Payment Gateway]
+    Gateway --> Verify[Payment Verification & Callback]
+    Verify --> Success[Donation Success]
+    Success --> Receipt[Generate Tax Receipt & 80G PDF]
+    Success --> Notify[Notify Admin & Update Live Analytics]
 ```
 
 ---
 
 # Blood Donation Event Flow
 
-```txt
-Open Blood Donation Event
-            ↓
-Eligibility Form
-            ↓
-Availability Confirmation
-            ↓
-Registration Success
-            ↓
-Admin Notification
+```mermaid
+graph TD
+    Open[Open Blood Donation Event] --> Eligibility[Complete Eligibility Form]
+    Eligibility --> Confirm[Availability Confirmation]
+    Confirm --> Success[Registration Success]
+    Success --> AdminNotify[Notify Admin Coordinator]
 ```
 
 ---
@@ -385,22 +380,16 @@ Admin Notification
 
 ---
 
-# NGO Event Creation Flow
+## NGO Event Creation Flow
 
-```txt
-NGO Dashboard
-        ↓
-Create Event
-        ↓
-Add Event Details
-        ↓
-Upload Banner/Image
-        ↓
-Set Date & Time
-        ↓
-Publish Event
-        ↓
-Public Visibility
+```mermaid
+graph TD
+    Dashboard([NGO Dashboard]) --> Create[Create Event]
+    Create --> Details[Add Event Details & Description]
+    Details --> Upload[Upload Banner or Image]
+    Upload --> DateTime[Set Date, Time & Location]
+    DateTime --> Publish[Publish Event & Save in DB]
+    Publish --> Visible[Public Visibility on Events Feed]
 ```
 
 ---
@@ -421,20 +410,15 @@ Public Visibility
 
 ---
 
-# Admin Control Pipeline
+## Admin Control Pipeline
 
-```txt
-Admin Dashboard
-        ↓
-Manage Users
-        ↓
-Manage Events
-        ↓
-Monitor Donations
-        ↓
-Review Reports
-        ↓
-Platform Analytics
+```mermaid
+graph TD
+    AdminDash([Admin Dashboard]) --> ManageUsers[Manage Users & Roles]
+    AdminDash --> ManageEvents[Manage / Moderate Campaigns & Events]
+    AdminDash --> MonitorDonations[Monitor Live Donation Stream]
+    AdminDash --> ReviewReports[Review & Upload Transparency Reports]
+    AdminDash --> Analytics[Inspect System & Platform Analytics]
 ```
 
 ---
@@ -453,18 +437,14 @@ Platform Analytics
 
 ---
 
-# Calendar Interaction Flow
+## Calendar Interaction Flow
 
-```txt
-Calendar Page
-        ↓
-Select Date/Event
-        ↓
-View Details
-        ↓
-Join / Donate
-        ↓
-Receive Notifications
+```mermaid
+graph TD
+    CalPage([Calendar Page]) --> Select[Select Date or Event Card]
+    Select --> Details[View Event Time & Details]
+    Details --> Action[Join as Volunteer / Donate to Cause]
+    Action --> Notify[Receive Email & System Reminders]
 ```
 
 ---
@@ -662,32 +642,25 @@ src/
 
 # State Management Architecture
 
-```txt
-Zustand Store
-        ↓
-Global UI State
-        ↓
-Authentication State
-        ↓
-Dashboard State
-        ↓
-Event State
+```mermaid
+graph TD
+    Store([Zustand Global Store / React Auth Context])
+    Store --> UI[Global UI State<br>Modals, Navigation, Theme]
+    Store --> Auth[Authentication State<br>Active Session, Token, User Role]
+    Store --> Dash[Dashboard State<br>Registered Events, History, Analytics]
+    Store --> Event[Event State<br>Filters, Live Map, Event Cache]
 ```
 
 ---
 
 # Deployment Pipeline
 
-```txt
-GitHub Push
-      ↓
-Vercel Deployment
-      ↓
-Environment Variables
-      ↓
-Production Build
-      ↓
-Live Platform
+```mermaid
+graph TD
+    Push([Push Code to GitHub]) --> Vercel[Trigger Vercel Build Pipeline]
+    Vercel --> Envs[Inject Secure Environment Variables]
+    Envs --> Build[Compile Production Build & Typecheck]
+    Build --> Live[Deploy to Production Edge Network]
 ```
 
 ---
